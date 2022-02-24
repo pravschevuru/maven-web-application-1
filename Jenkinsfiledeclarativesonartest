@@ -1,0 +1,20 @@
+pipeline{
+
+agent any
+
+tools{
+maven 'maven3.6.3'
+}
+stages {
+stage("check out SCM"){
+steps{
+  git credentialsId: 'github_crede1', url: 'https://github.com/pravschevuru/maven-web-application-1.git'
+  }
+  }
+  stage('ExecuteSonarQubeReport'){
+  steps{
+  sh  "mvn sonar:sonar"
+  }
+  }
+ }
+ }
