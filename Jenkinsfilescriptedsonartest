@@ -1,0 +1,10 @@
+node{
+    def mavenHome = tool name: "maven3.6.3"
+    stage("check out SCM"){
+        git credentialsId: 'github_crede1', url: 'https://github.com/pravschevuru/maven-web-application-1.git'
+    }
+    
+    stage("sonarqube code analysis"){
+        sh "${mavenHome}/bin/mvn sonar:sonar"
+    }
+}
